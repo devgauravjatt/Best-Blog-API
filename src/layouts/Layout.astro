@@ -1,22 +1,43 @@
+---
+import { Font } from 'astro:assets'
+import Header from '@/components/Header.astro'
+import '@/styles/global.css'
+---
+
 <!doctype html>
-<html lang="en">
+<html lang='en'>
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width' />
+		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+		<meta name='generator' content={Astro.generator} />
+		<Font cssVariable='--font-dm-sans' preload />
 		<title>Astro Basics</title>
 	</head>
 	<body>
+		<Header />
 		<slot />
 	</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<script>
+	const btns = document.querySelectorAll(
+		'#show-res-btn'
+	) as NodeListOf<HTMLButtonElement>
+	const ress = document.querySelectorAll('.res') as NodeListOf<HTMLDivElement>
+
+	btns.forEach((btn, index) => {
+		btn.addEventListener('click', () => {
+			const res = ress[index]
+			const isHidden = !res.classList.contains('show')
+
+			if (isHidden) {
+				res.classList.add('show')
+				btn.textContent = 'Hide Response'
+			} else {
+				res.classList.remove('show')
+				btn.textContent = 'Show Response'
+			}
+		})
+	})
+</script>

@@ -1,11 +1,57 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Welcome from '@/components/Welcome.astro'
+import Layout from '../layouts/Layout.astro'
+import ApiBox from '@/components/ApiBox.astro'
+import apiCodesSchema from '@/data/const'
 ---
 
 <Layout>
-	<Welcome />
+	<main class='py-24 px-16'>
+		<div class='max-w-4xl'>
+			<Welcome />
+			<ApiBox
+				title='Get Posts With Index'
+				resCode={apiCodesSchema.getPostsWithIndex.resCode}
+				code={apiCodesSchema.getPostsWithIndex.code}
+			>
+				This api will return the first 10 posts by default and you now get more
+				post show use
+				<p>
+					<code>?page=2</code> or <code>?page=3</code> in the url to get more posts
+					with index
+				</p>
+			</ApiBox>
+			<ApiBox
+				title='Get Full Post By Slug'
+				resCode={apiCodesSchema.getPostBySlug.resCode}
+				code={apiCodesSchema.getPostBySlug.code}
+			>
+				This api will return the full post by slug with meta seo and html
+				content
+				<p>
+					<code>{'{slug}'}</code> replace with posts list from one post slug
+				</p>
+			</ApiBox>
+			<ApiBox
+				title='Get Posts By Categories'
+				resCode={apiCodesSchema.getPostByCategory.resCode}
+				code={apiCodesSchema.getPostByCategory.code}
+			>
+				This api will return the posts by category and with page index
+				<p>
+					<code>{'{category}'}</code> replace with posts list from one category
+				</p>
+			</ApiBox>
+			<ApiBox
+				title='Get Lis All Categories'
+				resCode={apiCodesSchema.getListCategories.resCode}
+				code={apiCodesSchema.getListCategories.code}
+			>
+				This api will return all Categories list for your Categories menu
+				<p>
+					<code>{'{category}'}</code> replace with posts list from one category
+				</p>
+			</ApiBox>
+		</div>
+	</main>
 </Layout>

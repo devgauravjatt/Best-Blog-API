@@ -1,0 +1,61 @@
+---
+import UrlIcon from '@/assets/arcticons-url-forwarder.svg'
+import { Code } from 'astro/components'
+
+interface Props {
+	resCode: string
+	code: string
+	title: string
+}
+
+const data: Props = Astro.props
+---
+
+<div class='my-7 max-w-3xl'>
+	<h2 class='text-2xl font-semibold flex items-center'>
+		<UrlIcon class={'size-8'} />
+		{data.title} -
+	</h2>
+	<p class='my-4'>
+		<slot />
+	</p>
+	<div class='my-4 max-w-3xl'>
+		<Code code={data.code} lang='ts' wrap />
+	</div>
+	<button
+		id='show-res-btn'
+		class='rounded-md border-2 border-stone-600 px-4 py-2 text-stone-600 hover:bg-stone-600 hover:text-white'
+	>
+		Show Response
+	</button>
+	<div class='my-4 max-w-3xl res'>
+		<Code code={data.resCode} lang='json' />
+	</div>
+	<div class='border-b-3 border-stone-300'></div>
+</div>
+
+<style>
+	pre {
+		border-radius: 5px !important;
+		padding: 1rem !important;
+	}
+
+	.res pre {
+		overflow-x: scroll !important;
+		scrollbar-color: #6d6d6d #24292e !important;
+	}
+
+	.res {
+		overflow: hidden;
+		max-height: 0;
+		opacity: 0;
+		transition:
+			max-height 4s ease,
+			opacity 0.4s ease;
+	}
+
+	.res.show {
+		max-height: 1000px;
+		opacity: 1;
+	}
+</style>

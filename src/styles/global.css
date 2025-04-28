@@ -1,1 +1,9 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+body {
+	font-family: var(--font-dm-sans);
+}
+
+code:not(pre code) {
+	@apply bg-gray-200 px-2 py-1 rounded-md;
+}
