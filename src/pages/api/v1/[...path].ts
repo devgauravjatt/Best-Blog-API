@@ -2,7 +2,7 @@ import { Hono } from 'hono'
 import { logger } from 'hono/logger'
 import type { APIRoute } from 'astro'
 import { cors } from 'hono/cors'
-import PostsRoutes from './routes/posts'
+import PostsRoutes from '../../../controllers/routes/posts'
 
 export const prerender = false
 

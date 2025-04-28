@@ -1,4 +1,4 @@
-import { API_BASE_URL } from 'astro:env/server'
+const API_BASE_URL = 'https://best-blog-api.dev/api/v1'
 
 const getPostsWithIndex = {
 	resCode: `
